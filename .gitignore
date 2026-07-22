@@ -1,0 +1,34 @@
+# gradle
+.gradle/
+build/
+out/
+
+# eclipse
+bin/
+*.launch
+
+# idea
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+.vscode/
+.classpath
+.project
+.settings/
+
+# macos
+.DS_Store
+
+# forge run directories
+run/
+run-server/
+run-data/
+run-gametest/
+logs/
+
+# other
+eclipse
+.factorypath
