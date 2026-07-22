@@ -14,15 +14,15 @@ import net.minecraft.world.level.Level;
 
 /**
  * The Bubble Gum item. Right-click (use) to blow a bubble that lifts you gently into
- * the sky for 10 seconds, then pops - dropping you back down without fall damage.
+ * the sky for 30 seconds, then pops - dropping you back down without fall damage.
  *
  * See com.bubblegumfloat.effect.FloatingMobEffect for the actual lift behaviour, and
  * com.bubblegumfloat.event.ModEvents for the pop detection + fall-damage immunity.
  */
 public class BubbleGumItem extends Item {
 
-    // 10 seconds of float time, as specified (20 ticks/second).
-    private static final int FLOAT_DURATION_TICKS = 20 * 10;
+    // 30 seconds of float time (20 ticks/second).
+    private static final int FLOAT_DURATION_TICKS = 20 * 30;
 
     // 8 second cooldown - within the requested 5-10s range, prevents spamming.
     private static final int COOLDOWN_TICKS = 20 * 8;

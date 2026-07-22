@@ -1,7 +1,7 @@
 # BubbleGumFloat
 
 A Minecraft Forge 1.20.1 mod that adds **Bubble Gum** (`bubblegumfloat:bubble_gum`): chew
-it to blow a big bubble that lifts you gently into the sky for 10 seconds, then pops -
+it to blow a big bubble that lifts you gently into the sky for 30 seconds, then pops -
 dropping you back down without taking fall damage.
 
 ## Requirements
@@ -41,10 +41,11 @@ current 1.20.1 build number, and update `forge_version` in `gradle.properties` t
   shows the "You blow a big bubble..." action-bar message, consumes the item (skipped in
   creative), and starts an 8s cooldown.
 - `effect/FloatingMobEffect.java` — custom `MobEffect` ("Floating") that eases the player
-  upward at ~0.18 blocks/tick for 10 seconds (about a 36-block climb), easing back down to
-  0 over the last second so the ascent stops smoothly instead of snapping. See the
-  design-choice comment at the top of that file for why a `MobEffect` was used instead of a
-  raw tick/capability velocity hack.
+  upward at ~0.06 blocks/tick for 30 seconds (about a 35-block climb — same target height
+  as the original 10s version, just spread over 3x longer), easing back down to 0 over the
+  last second so the ascent stops smoothly instead of snapping. See the design-choice
+  comment at the top of that file for why a `MobEffect` was used instead of a raw
+  tick/capability velocity hack.
 - `event/ModEvents.java` — detects the moment the Floating effect expires (the "pop"),
   plays a pop sound + particle burst, and grants the player immunity from the very next
   `LivingFallEvent` so the landing after a bubble pop deals no fall damage.
@@ -52,10 +53,12 @@ current 1.20.1 build number, and update `forge_version` in `gradle.properties` t
 
 ## Assets
 
-- `assets/bubblegumfloat/textures/item/bubble_gum.png` — a 16x16 placeholder texture
-  (pink base with a light-blue diagonal/streak pattern), generated programmatically since
-  no art tool was available. Swap this file for real artwork any time — no code changes
-  needed, just keep it 16x16 (or any square power-of-two size) RGBA PNG at that path.
+- `assets/bubblegumfloat/textures/item/bubble_gum.png` — a 16x16 placeholder texture: a
+  generic wrapped-candy silhouette (pink gum piece, light-blue-speckled white wrapper
+  twists), generated programmatically since no art tool was available. It's an original,
+  generic design, not a copy of any real candy brand's artwork/logo. Swap this file for
+  real artwork any time — no code changes needed, just keep it 16x16 (or any square
+  power-of-two size) RGBA PNG at that path.
 - `assets/bubblegumfloat/models/item/bubble_gum.json` — standard `item/generated` model
   pointing at the texture above.
 - `assets/bubblegumfloat/lang/en_us.json` — display names ("Bubble Gum", the creative tab
@@ -70,7 +73,7 @@ Forge 1.20.1.
 
 | What | Where | Default |
 |---|---|---|
-| Float duration | `BubbleGumItem.FLOAT_DURATION_TICKS` | 200 (10s) |
+| Float duration | `BubbleGumItem.FLOAT_DURATION_TICKS` | 600 (30s) |
 | Item cooldown | `BubbleGumItem.COOLDOWN_TICKS` | 160 (8s) |
-| Ascent speed | `FloatingMobEffect.ASCEND_SPEED` | 0.18 blocks/tick |
+| Ascent speed | `FloatingMobEffect.ASCEND_SPEED` | 0.06 blocks/tick |
 | Ease-out window | `FloatingMobEffect.EASE_OUT_TICKS` | 20 (1s) |

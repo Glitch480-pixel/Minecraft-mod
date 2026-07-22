@@ -27,9 +27,11 @@ import net.minecraft.world.phys.Vec3;
  */
 public class FloatingMobEffect extends MobEffect {
 
-    // Peak ascent speed in blocks/tick. 0.18 * 200 ticks (10s) ~= 36 blocks of climb,
-    // comfortably in the requested 30-40 block "wide view" range.
-    private static final double ASCEND_SPEED = 0.18D;
+    // Peak ascent speed in blocks/tick. With the 30s (600-tick) float duration, this
+    // works out to ~35 blocks of total climb, comfortably in the 30-40 block "wide view"
+    // range -- same target height as before, just reached more gradually now that the
+    // float lasts 3x longer. Bump this back toward 0.18 if you'd rather climb higher.
+    private static final double ASCEND_SPEED = 0.06D;
 
     // Number of ticks (at the end of the effect) over which we ease the ascent
     // speed back down to zero, so the player doesn't just stop dead in the air.
